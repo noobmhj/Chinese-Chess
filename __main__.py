@@ -11,10 +11,10 @@ class config:
         self.minheight = 600
         self.minwidth = 540
         self.displaymode = 'y'
-        self.killover = "./data/wavs/piecekillover.wav"
-        self.kill = "./data/wavs/piecekill.wav"
-        self.move = "./data/wavs/piecemove.wav"
-        self.iconfile = "./data/images/icon.ico"
+        self.killover = "./data/wavs/killover.wav"
+        self.kill = "./data/wavs/kill.wav"
+        self.move = "./data/wavs/move.wav"
+        self.iconfile = "./data/icon.ico"
         self.null = ' '
         self.contwide = 5
         self.contcolor = "#7d1d14"
