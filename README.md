@@ -1,6 +1,6 @@
 # 中国象棋
-#### Powered by NOOBMHJ
-#### README 于 2024年7月30日更新
+**Powered by NOOBMHJ**
+**README 于 2024年7月30日更新**
 ## 项目简介
 使用`Python`实现的一个简单中国象棋游戏
 总共约570行, 实现了中国象棋的基本规则, 简单的动画和音效
