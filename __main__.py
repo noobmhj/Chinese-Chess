@@ -14,7 +14,7 @@ class config:
         self.killover = "./data/wavs/killover.wav"
         self.kill = "./data/wavs/kill.wav"
         self.move = "./data/wavs/move.wav"
-        self.iconfile = "./data/icon.ico"
+        self.iconfile = "./data/_icon.ico"
         self.null = ' '
         self.contwide = 5
         self.contcolor = "#7d1d14"
@@ -46,7 +46,7 @@ class config:
                      '6' : zu,
                      '7' : pao
                     }
-
+                                   
 
     def make(self):
         self.minheight, self.minwidth = (self.minwidth, self.minheight) if self.displaymode == 'x' else (self.minheight, self.minwidth)
@@ -295,6 +295,8 @@ class gui:
         self.root.resizable(0, 0)
         self.root.bind("<Button - 1>", self.began)
 
+        self.displaycenter()
+
         try:
             self.root.iconbitmap(cfg.iconfile)
         except:
@@ -313,13 +315,64 @@ class gui:
         self.loadcodepi(codepi=cfg.orangecodepi)
         self.onpresspiece = False
 
+
+    def displaycenter(self):
+        h, w = self.root.winfo_screenheight(), self.root.winfo_screenwidth()
+        self.root.geometry(f"+{int((w - (cfg.minwidth * cfg.bs)) / 2)}+{int((h - (cfg.minheight * cfg.bs)) / 2)}")
+        
+
+    """
+    def setting(self):
+        print(cfg.writechange)
+        
+        st = setting.config(master=self.root, title="设置", geometry=[300, 400], apply_label="应用设置", reset_label="恢复默认设置", reset_data=self.reset, cfg=cfg)
+
+        try:
+            st.root.iconbitmap(cfg.iconfile)
+        except:
+            pass
+
+        st.write(var=cfg.bs, label="倍数")
+        
+        #for i in cfg.writechange:
+            #st.write(var=cfg.writechange[i], label=i)
+
+        print(cfg.bs)
+
+        st.loop()
+
+        print(cfg.bs)
+        
+        print(cfg.writechange)
+    """
+
         
     def began(self, _):
         self.canvas = tkinter.Canvas(master=self.root)
         self.canvas.bind("<Button - 1>", self.onpress)
         self.canvas.place(x=0, y=0, relw=1, relh=1)
         self.root.unbind("<Button - 1>")
+
+        self.menu = tkinter.Menu(master=self.root)
+        #self.menu.add_command(label="设置", command=self.setting)
+        self.menu.add_command(label="重新开始", command=self.restart)
+        self.root.config(menu=self.menu)
         
+        self.update()
+
+
+    """
+    def reset(self):
+        global cfg
+
+        cfg = config()
+        cfg.make()
+    """
+
+
+    def restart(self):
+        self.loadcodepi(cfg.orangecodepi)
+        self.onpresspiece = False
         self.update()
 
 
@@ -461,7 +514,7 @@ class gui:
                 if s == '1':
                     cfg.blackking = p
        
-        steps = 0
+        cfg.steps = 0
 
     
     def drawpiece(self, p):
